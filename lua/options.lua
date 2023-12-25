@@ -1,4 +1,3 @@
-
 -- Set the line numbers to show
 vim.opt.number = true
 
@@ -45,9 +44,3 @@ vim.opt.ignorecase = true
 -- Makes the colors "better". Turn it off to see the difference. More importantly it
 -- enables 24 bit colors which will allow us to use color schemes.
 vim.opt.termguicolors = true
-
--- Mapping space to be the leader key. The leader key is used in key maps and will need
--- to be pressed first before the key combination. The g is used to declare a global
--- variable called "mapleader". The "g" is a vim global and not a Lua global or part of
--- the options.
-vim.g.mapleader = " "
