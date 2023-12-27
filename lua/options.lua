@@ -25,7 +25,7 @@ vim.opt.shiftwidth = 4
 -- The register that interacts with the system clipboard is called "plus". The value for
 -- this option is a type of string. For this setting we will use "unnamedplus" for neovim
 -- to use the system clipboard.
-vim.opt.clipboard = "unnamedplus"
+vim.opt.clipboard:append("unnamedplus")
 
 -- Allows selection to move past the space where there is an actual character
 vim.opt.virtualedit = "block"

@@ -37,7 +37,7 @@ return {
                         enable = false
                     }
                 }
-            } 
+            }
         })
 
         -- set keymaps for nvim-tree
