@@ -3,7 +3,8 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
         "hrsh7th/cmp-nvim-lsp",
-        { "antosha417/nvim-lsp-file-operations", config = true }
+        { "antosha417/nvim-lsp-file-operations", config = true },
+        "Decodetalkers/csharpls-extended-lsp.nvim"
     },
     config = function()
         -- import lspconfig plugin
@@ -101,7 +102,11 @@ return {
 
         lspconfig["csharp_ls"].setup({
             capabilities = capabilities,
-            on_attach = on_attach
+            on_attach = on_attach,
+            handlers = {
+                ["textDocument/definition"] = require('csharpls_extended').handler,
+                ["textDocument/typeDefinition"] = require('csharpls_extended').handler,
+            }
         })
 
         -- configure Lua language server
@@ -109,26 +114,26 @@ return {
             capabilities = capabilities,
             on_attach = on_attach,
             settings = { -- custom settings for lua
-                Lua = {
-                    -- make the language server recognize "vim" global
-                    diagnostics = {
-                        globals = { "vim" },
-                    },
-                    workspace = {
-                        -- make language server aware of runtime files
-                            library = {
-                                [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                            [vim.fn.stdpath("config") .. "/lua"] = true,
-                        },
+            Lua = {
+                -- make the language server recognize "vim" global
+                diagnostics = {
+                    globals = { "vim" },
+                },
+                workspace = {
+                    -- make language server aware of runtime files
+                    library = {
+                        [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                        [vim.fn.stdpath("config") .. "/lua"] = true,
                     },
                 },
             },
-        })
+        },
+    })
 
-        -- configure clang lsp
-        lspconfig["clangd"].setup({
-            capabilities = capabilities,
-            on_attach = on_attach
-        })
-    end
+    -- configure clang lsp
+    lspconfig["clangd"].setup({
+        capabilities = capabilities,
+        on_attach = on_attach
+    })
+end
 }
