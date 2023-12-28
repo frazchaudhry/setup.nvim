@@ -99,6 +99,11 @@ return {
             on_attach = on_attach
         })
 
+        lspconfig["csharp_ls"].setup({
+            capabilities = capabilities,
+            on_attach = on_attach
+        })
+
         -- configure Lua language server
         lspconfig["lua_ls"].setup({
             capabilities = capabilities,
